@@ -2,11 +2,15 @@
 
 require $_SERVER['DOCUMENT_ROOT'] . "/src/ServiceUser.php";
 
-$name = $_GET["name"] ?? null;
+$email = $_GET["email"] ?? null;
+
+if (!$email) {
+    die("Necessário envio das informações: email.");
+}
 
 $ServiceUser = new ServiceUser();
 
-$result = $ServiceUser->getUserByName($name);
+$result = $ServiceUser->getUserByEmail($email);
 
 $result = json_encode($result, JSON_PRETTY_PRINT);
 

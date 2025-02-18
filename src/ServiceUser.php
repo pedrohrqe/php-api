@@ -15,66 +15,71 @@ class ServiceUser
         }
     }
 
+    private function executeQuery($query)
+    {
+        $result = $this->db->query($query);
+        return $result;
+    }
+
     public function getAllUsers()
     {
-        $q = "SELECT * FROM users";
-        $result = $this->db->query($q);
-        return $result;
+        return $this->executeQuery("SELECT * FROM users");
     }
 
     public function getUserByID($id)
     {
-        $q = "SELECT * FROM users WHERE ID = $id";
-        $result = $this->db->query($q);
-        return $result;
+        return $this->executeQuery("SELECT * FROM users WHERE ID = $id");
     }
 
     public function getUserByName($name)
     {
-        $q = "SELECT * FROM users WHERE `NAME` = '$name'";
-        $result = $this->db->query($q);
-        return $result;
+        return $this->executeQuery("SELECT * FROM users WHERE `NAME` = '$name'");
     }
 
     public function getUserByEmail($email)
     {
-        $q = "SELECT * FROM `users` WHERE `EMAIL` = '$email'";
-        $result = $this->db->query($q);
-        return $result;
+        return $this->executeQuery("SELECT * FROM `users` WHERE `email` = '$email'");
     }
 
-    public function getUserIDByName($name)
+    public function createUser($name, $phone, $email, $zipCode)
     {
-        $q = "SELECT ID FROM users WHERE `NAME` LIKE '%$name%'";
-        $result = $this->db->query($q);
-        return $result;
+        return $this->executeQuery("INSERT INTO users (`NAME`, PHONE, EMAIL, ZIPCODE) VALUES ('$name', $phone, '$email', $zipCode)");
     }
 
-    public function addUser($name, $phone, $email, $zipCode)
+    public function deleteUser($id)
     {
-        $q = "INSERT INTO users (`NAME`, PHONE, EMAIL, ZIPCODE) VALUES ('$name', $phone, '$email', $zipCode)";
-        $result = $this->db->query($q);
-        return $result;
+        return $this->executeQuery("DELETE FROM `users` WHERE `id` = $id");
     }
 
-    public function updateUserNameByID($id, $name)
+    public function updateUser($id, $name = "", $phone = "", $email = "", $zipCode = "")
     {
-        $q = "UPDATE users SET `NAME` = '$name' WHERE ID= $id";
-        $result = $this->db->query($q);
-        return $result;
-    }
+        if (empty($name) && empty($phone) && empty($email) && empty($zipCode)) {
+        }
 
-    public function updateEmailByID($id, $email)
-    {
-        $q = "UPDATE users SET `EMAIL` = '$email' WHERE ID= $id";
-        $result = $this->db->query($q);
-        return $result;
-    }
+        $keys = [];
 
-    public function updatePhoneByID($id, $phone)
-    {
-        $q = "UPDATE users SET `PHONE` = '$phone' WHERE ID= $id";
-        $result = $this->db->query($q);
-        return $result;
+        if (!empty($name)) {
+            $keys["`name`"] = $name;
+        }
+        if (!empty($phone)) {
+            $keys["`phone`"] = $phone;
+        }
+        if (!empty($email)) {
+            $keys["`email`"] = $email;
+        }
+        if (!empty($zipcode)) {
+            $keys["`zipcode`"] = $zipcode;
+        }
+
+        if (empty($keys)) {
+            throw new Exception("Necessário envio de uma das informações: name, phone, email, zipcode.");
+        };
+
+        $setValues = [];
+        foreach ($keys as $key => $value) {
+            $setValues[] = "$key = '$value'";
+        }
+
+        return $this->executeQuery("UPDATE `users` SET " . implode(", ", $setValues) . " WHERE `id` = $id;");
     }
 }

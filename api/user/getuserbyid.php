@@ -4,8 +4,8 @@ require $_SERVER['DOCUMENT_ROOT'] . "/src/ServiceUser.php";
 
 $id = $_GET["id"] ?? null;
 
-if (!$id || !is_numeric($id)) {
-    die(json_encode(["error" => "ID não encontrado ou inválido"], JSON_PRETTY_PRINT));
+if (!$id) {
+    die("Necessário envio das informações: id.");
 }
 
 $ServiceUser = new ServiceUser();
