@@ -4,13 +4,16 @@ Esta é uma API simples desenvolvida em PHP que permite a conexão com um banco 
 
 ## Funcionalidades
 - Criar um post
-- Atualizar um post
-- Excluir um post
-- Listar todos os posts
+- Atualizar um post por ID
+- Excluir um post por ID
+- Listar posts de um usuário por ID
+- Criar um usuário
+- Atualizar um usuário por ID
+- Excluir um usuário por ID
 - Listar todos os usuários
 - Listar um usuário pelo ID
 - Listar um usuário pelo Nome
-- Criar usuário
+- Listar um usuário pelo E-mail
 
 ## Tecnologias Utilizadas
 - PHP
