@@ -1,6 +1,7 @@
 <?php
 
 require $_SERVER['DOCUMENT_ROOT'] . "/src/ServiceUser.php";
+require $_SERVER['DOCUMENT_ROOT'] . "/src/Config.php";
 
 $id = $_GET["id"] ?? null;
 $name = $_GET["name"] ?? null;

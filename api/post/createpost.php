@@ -1,6 +1,7 @@
 <?php
 
 require $_SERVER['DOCUMENT_ROOT'] . "/src/ServicePosts.php";
+require $_SERVER['DOCUMENT_ROOT'] . "/src/Config.php";
 
 $userID = intval($_GET['userid']) ?? null;
 $title = $_GET['title'] ?? null;
