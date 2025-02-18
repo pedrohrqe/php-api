@@ -15,30 +15,24 @@ class ServicePost
         }
     }
 
-    private function executeQuery($query)
-    {
-        $result = $this->db->query($query);
-        return $result;
-    }
-
     public function getPostsByUserID($user_id)
     {
-        return $this->executeQuery("SELECT * FROM `posts` WHERE user_id = $user_id");
+        return $this->db->query("SELECT * FROM `posts` WHERE user_id = $user_id");
     }
 
     public function getPostByID($id)
     {
-        return $this->executeQuery("SELECT * FROM `posts` WHERE id = $id");
+        return $this->db->query("SELECT * FROM `posts` WHERE id = $id");
     }
 
     public function createPost($user_id, $title, $content)
     {
-        return $this->executeQuery("INSERT INTO `posts` (`user_id`, `title`, `content`) VALUES ($user_id, '$title', '$content');");
+        return $this->db->query("INSERT INTO `posts` (`user_id`, `title`, `content`) VALUES ($user_id, '$title', '$content');");
     }
 
     public function deletePostByID($id)
     {
-        return $this->executeQuery("DELETE FROM posts WHERE `id` = $id");
+        return $this->db->query("DELETE FROM posts WHERE `id` = $id");
     }
 
     public function updatePostByID($id, $title = null, $content = null)

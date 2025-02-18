@@ -9,6 +9,10 @@ $phone = $_GET["phone"] ?? null;
 $email = $_GET["email"] ?? null;
 $zipCode = $_GET["zipcode"] ?? null;
 
+if (empty($id)) {
+    die("Necessário informar o ID do usuário a ser atualizado!");
+}
+
 if (empty($name) && empty($phone) && empty($email) && empty($zipCode)) {
     die("Necessário envio de uma das informações: name, phone, email, zipcode.");
 }
