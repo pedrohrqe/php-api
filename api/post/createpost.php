@@ -3,7 +3,7 @@
 require $_SERVER['DOCUMENT_ROOT'] . "/src/ServicePosts.php";
 require $_SERVER['DOCUMENT_ROOT'] . "/src/Config.php";
 
-$userID = !empty($_GET['userid']) ? intval($_GET['userid']) : null;
+$userID = $_GET['userid'] ?? null;
 $title = $_GET['title'] ?? null;
 $content = $_GET['content'] ?? null;
 
