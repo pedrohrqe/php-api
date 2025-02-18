@@ -12,7 +12,7 @@ if (empty($userID) || empty($title) || empty($content)) {
 }
 
 $ServicePosts = new ServicePost();
-$result  = $ServicePosts->createPost($userID, $title, $content);
+$result  = $ServicePosts->createPost(intval($userID), $title, $content);
 
 if (!empty($result["id"])) {
     $result["post"] = [
