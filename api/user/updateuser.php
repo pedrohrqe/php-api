@@ -10,7 +10,7 @@ $email = $_GET["email"] ?? null;
 $zipCode = $_GET["zipcode"] ?? null;
 
 if (empty($name) && empty($phone) && empty($email) && empty($zipCode)) {
-    throw new Exception("Necessário envio de uma das informações: name, phone, email, zipcode.");
+    die("Necessário envio de uma das informações: name, phone, email, zipcode.");
 }
 
 $ServiceUser = new ServiceUser();

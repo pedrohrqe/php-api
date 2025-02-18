@@ -8,7 +8,7 @@ $title = $_GET['title'] ?? null;
 $content = $_GET['content'] ?? null;
 
 if (empty($userID) || empty($title) || empty($content)) {
-    throw new Exception("Necessário envio das informações: userid, title, content.");
+    die("Necessário envio das informações: userid, title, content.");
 }
 
 $ServicePosts = new ServicePost();

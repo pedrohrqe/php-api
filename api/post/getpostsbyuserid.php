@@ -6,8 +6,7 @@ require $_SERVER['DOCUMENT_ROOT'] . "/src/Config.php";
 $userid = $_GET['userid'] ?? null;
 
 if (empty($userid)) {
-    throw new Exception("Necessário envio das informações: userid.");
-    
+    die("Necessário envio das informações: userid.");  
 }
 
 $ServicePosts = new ServicePost();
