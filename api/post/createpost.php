@@ -3,7 +3,7 @@
 require $_SERVER['DOCUMENT_ROOT'] . "/src/ServicePosts.php";
 require $_SERVER['DOCUMENT_ROOT'] . "/src/Config.php";
 
-$userID = intval($_GET['userid']) ?? null;
+$userID = !empty($_GET['userid']) ? intval($_GET['userid']) : null;
 $title = $_GET['title'] ?? null;
 $content = $_GET['content'] ?? null;
 
@@ -14,7 +14,7 @@ if (empty($userID) || empty($title) || empty($content)) {
 $ServicePosts = new ServicePost();
 $result  = $ServicePosts->createPost($userID, $title, $content);
 
-if (!empty($result["id"])){
+if (!empty($result["id"])) {
     $result["post"] = [
         "id" => $result["id"],
         "title" => $title,
